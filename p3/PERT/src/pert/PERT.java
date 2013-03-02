@@ -22,6 +22,7 @@ public class PERT {
         Proyecto p = new Proyecto("prueba1.pert");
         
         HashMap<String,Tarea> tareas = p.getTareas();
+        Tarea[] arrTareas = tareas.values().toArray(new Tarea[0]);
         Tarea t1 = tareas.get("Fin");
         Tarea t2 = tareas.get("Inicio");
         Tarea t = tareas.get("Entrega");
@@ -31,10 +32,15 @@ public class PERT {
         p.calculoPesimista(t2);
         
         
-
+        for(Tarea nav : arrTareas) {
+            System.out.printf(nav.getNombre() + "\t" + Math.ceil(nav.getCO()) + "\t" + Math.ceil(nav.getCP()) + 
+                    "\t" + Math.ceil(nav.getFO()) + "\t" + Math.ceil(nav.getFP()) + "\n");
+        }
+        
+/*
         System.out.println(t.getCO());
         System.out.println(t.getCP());
         System.out.println(t.getFO());
-        System.out.println(t.getFP());
+        System.out.println(t.getFP());*/
     }
 }
