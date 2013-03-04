@@ -1,0 +1,34 @@
+Tabla Resumen
+-------------
+
+Tarea			Duracion	cO	cP	fO	fP	Holgura
+Inicio			0			0	0	0	0	0
+Estudio_Prob	8			0	0	8	8	0
+Entrevistas		6			0	2	6	8	2
+Analisis		12			8	8	20	20	0
+Diseño_GUI		6			20	20	26	26	0
+Diseño_Log		4			20	22	24	26	2
+Desarrollo		15			26	26	41	41	0
+Documentacion	12			26	29	38	41	3
+Entrega			8			41	41	49	49	0
+Fin				0			49	49	49	49	0
+
+
+---------------
+Duración estiamda del proyecto : 49
+---------------
+
+
+
+Tabla crítica ordenada
+----------------------
+
+Introduzca un valor de duración a analizar: 
+Tarea			cO	Duracion
+Inicio			0	0
+Estudio_Prob	0	8
+Analisis		8	12
+Diseño_GUI		20	6
+Desarrollo		26	15
+Entrega			41	8
+Fin				49	0

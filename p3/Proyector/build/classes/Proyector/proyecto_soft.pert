@@ -1,0 +1,25 @@
+# Pesos para el cálculo de la duración de las tareas 
+P	1.0	4.0	1.0
+
+# Tareas del proyecto
+T   Entrevistas   	4   6   8
+T   Estudio_Prob   	2   8   12
+T   Analisis		8   12  16
+T   Diseño_Log   	1   4   7
+T   Diseño_GUI   	4   6   8
+T   Desarrollo   	10  15  20
+T   Documentacion   	6   12  18
+T   Entrega   		7   8   9
+
+# Conexiones
+C   Inicio        Entrevistas   Estudio_Prob
+C   Entrevistas   Analisis
+C   Estudio_Prob  Analisis
+C   Analisis      Diseño_Log    Diseño_GUI
+C   Diseño_Log    Desarrollo
+C   Diseño_GUI    Desarrollo    Documentacion
+C   Desarrollo    Entrega
+C   Documentacion Entrega
+C   Entrega       Fin
+
+ 

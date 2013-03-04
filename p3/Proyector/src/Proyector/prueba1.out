@@ -1,0 +1,34 @@
+Tabla Resumen
+-------------
+Nombre Tarea	Durac.	cO	cP	fO	fP	Holgura
+Fin		0.0	36.0	36.0	36.0	36.0	0.0
+Estudio_Viab	4.0	0.0	0.0	4.0	4.0	0.0
+Diseño		8.0	7.0	7.0	15.0	15.0	0.0
+Reunion		3.0	0.0	0.0	3.0	3.0	0.0
+Pruebas		9.0	22.0	24.0	31.0	33.0	2.0
+Maqueta		5.0	15.0	17.0	20.0	22.0	2.0
+Implementar	7.0	15.0	15.0	22.0	22.0	0.0
+Entrega		3.0	33.0	33.0	36.0	36.0	0.0
+Captura_Req	4.0	3.0	3.0	7.0	7.0	0.0
+Integracion	11.0	22.0	22.0	33.0	33.0	0.0
+Cerrar_Contr	3.0	3.0	4.0	6.0	7.0	1.0
+Inicio		0.0	0.0	0.0	0.0	0.0	0.0
+Buscar_Ofert	3.0	4.0	4.0	7.0	7.0	0.0
+
+-------------
+Duracion estimada del proyecto : 36
+-------------
+
+Tabla Critica Ordenada
+-------------
+Nombre Tarea	cO	Duracion Estimada
+Inicio		0.0	0.0
+Estudio_Viab	0.0	4.0
+Buscar_Ofert	4.0	3.0
+Diseño		7.0	8.0
+Implementar	15.0	7.0
+Integracion	22.0	11.0
+Entrega		33.0	3.0
+Fin		36.0	0.0
+
+
