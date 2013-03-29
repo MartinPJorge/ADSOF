@@ -1,0 +1,29 @@
+# Pesos de las tareas
+P	1	3	2
+
+# Tareas del proyecto
+T	Reunion			1	2	3
+T	Estudio_Viab	2	3	4
+T	Cerrar_Contr	1	2	3
+T	Captura_Req		1	3	5
+T	Buscar_Ofert	1	3	4
+T	Diseño			3	7	12
+T	Implementar		2	5	11
+T	Maqueta			1	4	7
+T	Pruebas			4	6	14
+T	Integracion		5	8	17
+T	Entrega			1	2	3
+
+# Conexiones
+C	Cerrar_Contr	Diseño
+C	Implementar		Pruebas		Integracion
+C	Buscar_Ofert	Diseño
+C	Reunion			Captura_Req	Cerrar_Contr
+C	Estudio_Viab	Buscar_Ofert
+C	Inicio			Reunion		Estudio_Viab
+C	Diseño			Maqueta		Implementar
+C	Captura_Req		Diseño
+C	Integracion		Entrega
+C	Pruebas			Entrega
+C	Entrega			Fin
+C	Maqueta			Integracion
