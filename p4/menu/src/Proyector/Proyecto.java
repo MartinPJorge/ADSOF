@@ -6,7 +6,11 @@ package Proyector;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,7 +20,7 @@ import java.util.StringTokenizer;
  * @author Iv&aacute;n M&aacute;rquez Pardo
  * @author Jorge Mart&iacute;n P&eacute;rez
  */
-public final class Proyecto {
+public final class Proyecto implements Cloneable{
   
     private double pesoOp;
     private double pesoProb;
@@ -25,6 +29,9 @@ public final class Proyecto {
     private Tarea inicio;
     private Tarea fin;
     
+    /**
+     * Constructor de la clase Proyecto.
+     */
     public Proyecto() {
         tareas = new HashMap<String,Tarea>();
         
@@ -42,6 +49,12 @@ public final class Proyecto {
         tareas.put(fin.getNombre(), fin);
     }
     
+    /**
+     * 
+     * @param pO
+     * @param pM
+     * @param pP
+     */
     public Proyecto(double pO, double pM, double pP) {
         this();
         
@@ -124,7 +137,7 @@ public final class Proyecto {
     /**
      * Asigna el peso probable del proyecto.
      * 
-     * @param pesoOp 
+     * @param pesoProb 
      */
     public void setPesoProb(double pesoProb) {
         this.pesoProb = pesoProb;
@@ -133,7 +146,7 @@ public final class Proyecto {
     /**
      * Asigna el peso pesimista del proyecto.
      * 
-     * @param pesoOp 
+     * @param pesoPes 
      */
     public void setPesoPes(double pesoPes) {
         this.pesoPes = pesoPes;
@@ -415,12 +428,27 @@ public final class Proyecto {
         if(t.getNivel() < nivel) {
             t.setNivel(nivel);
         }
-                
+             
         ArrayList<Tarea> sig = t.getSiguientes();
         
         for(Tarea nav : sig) {
             asignarNivelesTras(nav, nivel + 1);
         }
     }
+    
+    /**
+     * Crea una copia del Proyecto.
+     * @return copia
+     */
+    @Override
+    public Proyecto clone() {
+        Proyecto copia = new Proyecto(this.pesoOp, this.pesoProb, this.pesoPes);
+        Set<Entry<String, Tarea>> set1 = this.getTareas().entrySet();
+        for (Entry<String, Tarea> e : set1) {
+            copia.tareas.put((String)e.getKey(), (Tarea)e.getValue().clone());
+        }
+        return copia;
+    }
+    
 }
 

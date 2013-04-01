@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Iv&aacute;n M&aacute;rquez Pardo
  * @author Jorge Mart&iacute;n P&eacute;rez
  */
-public class Tarea {
+public class Tarea implements Cloneable{
     
     private int dO;
     private int dM;
@@ -180,6 +180,10 @@ public class Tarea {
         this.fP = fP;
     }
 
+    /**
+     * 
+     * @param nivel
+     */
     public void setNivel(int nivel) {
         this.nivel = nivel;
     }
@@ -248,6 +252,18 @@ public class Tarea {
     */
     public double holgura(){
         return Math.ceil(this.getCP())-Math.ceil(this.getCO());
+    }
+    
+    /**
+     * Crea una copia de la Tarea.
+     * @return copia - Tarea
+     */
+    @Override
+    public Tarea clone(){
+        Tarea copia = new Tarea(dO, dM, dP, nombre);
+        copia.anteriores = (ArrayList<Tarea>)this.anteriores.clone();
+        copia.siguientes = (ArrayList<Tarea>)this.siguientes.clone();
+        return copia;
     }
     
 }

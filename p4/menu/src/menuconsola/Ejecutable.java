@@ -4,10 +4,17 @@
  */
 package menuconsola;
 
+import myException.EjecucionExcepcion;
+
 /**
+ * Esta interfaz la implementara la clase MenuItem y todas las que hereden de
+ * ella.
  *
- * @author e265923
+ * @author Iv&aacute;n M&aacute;rquez Pardo
+ * @author Jorge Mart&iacute;n P&eacute;rez
+ * @version 1.0
  */
 public interface Ejecutable {
-    Object ejecutar (Object o) throws EjecucionExcepcion;
+
+    Object ejecutar(Object o) throws EjecucionExcepcion;
 }
