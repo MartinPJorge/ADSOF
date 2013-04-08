@@ -7,15 +7,28 @@ package criaturas;
 import batalla5ejercitos.Batalla;
 
 /**
+ * Sobre esta clase abstracta se basan todas las demás clases asociadas a las
+ * distintas razas de la Batalla de los 5 Ejércitos.
  *
- * @author e265832
+ * @author Iv&aacute;n M&aacute;rquez Pardo
+ * @author Jorge Mart&iacute;n P&eacute;rez
+ * @version 1.0
  */
 public abstract class Criatura {
+
     private int ptosVida;
     private int ataque;
     private int defensa;
-    private int heridas;
-    
+    protected int heridas;
+
+    /**
+     * Constructor de la clase abstracta Criatura.
+     *
+     * @param ptosVida
+     * @param ataque
+     * @param defensa
+     * @param heridas
+     */
     public Criatura(int ptosVida, int ataque, int defensa, int heridas) {
         this.ptosVida = ptosVida;
         this.ataque = ataque;
@@ -24,7 +37,7 @@ public abstract class Criatura {
     }
 
     /**
-     * 
+     *
      * @return ataque
      */
     public int getAtaque() {
@@ -32,15 +45,15 @@ public abstract class Criatura {
     }
 
     /**
-     * 
-     * @param ataque 
+     *
+     * @param ataque
      */
     public void setAtaque(int ataque) {
         this.ataque = ataque;
     }
 
     /**
-     * 
+     *
      * @return defensa
      */
     public int getDefensa() {
@@ -48,15 +61,15 @@ public abstract class Criatura {
     }
 
     /**
-     * 
-     * @param defensa 
+     *
+     * @param defensa
      */
     public void setDefensa(int defensa) {
         this.defensa = defensa;
     }
 
     /**
-     * 
+     *
      * @return heridas
      */
     public int getHeridas() {
@@ -64,15 +77,15 @@ public abstract class Criatura {
     }
 
     /**
-     * 
-     * @param heridas 
+     *
+     * @param heridas
      */
     public void setHeridas(int heridas) {
         this.heridas = heridas;
     }
 
     /**
-     * 
+     *
      * @return puntos de vida
      */
     public int getPtosVida() {
@@ -80,62 +93,67 @@ public abstract class Criatura {
     }
 
     /**
-     * 
-     * @param ptosVida 
+     *
+     * @param ptosVida
      */
     public void setPtosVida(int ptosVida) {
         this.ptosVida = ptosVida;
     }
-    
+
     /**
      * Dice si una criatura est&aacute; muerta o no.
+     *
      * @return boolean
      */
     public boolean estaMuerto() {
         return (this.ptosVida == 0);
     }
-    
+
     /**
      * Causa (o no) una herida en el 'oponente'.
-     * @param oponente 
+     *
+     * @param oponente
      */
     public void atacar(Criatura oponente) {
         int dadoAtaque = Batalla.numAleatorio(1, 6);
         int dadoDefensa = Batalla.numAleatorio(1, 6);
         boolean addHerida = false;
         
-        if(dadoAtaque + this.getAtaque() > dadoDefensa + oponente.getDefensa()) {
+        if(this.estaMuerto()) {return;}
+
+        if (dadoAtaque + this.getAtaque() > dadoDefensa + oponente.getDefensa()) {
             addHerida = true;
         }
-        
-        if (oponente instanceof PrimerNacido) {
-            addHerida = !((PrimerNacido)oponente).curarHerida();
+
+        if (addHerida == true) {
+            oponente.addHeridas(1);
         }
-        
-        if(addHerida){oponente.addHeridas(1);}
     }
-    
+
     /**
      * Incrementa en 'numeroHeridas' las heridas de la criatura.
-     * @param numeroHeridas 
+     *
+     * @param numeroHeridas
      */
     public void addHeridas(int numeroHeridas) {
         this.heridas += numeroHeridas;
     }
-    
+
     /**
      * Aplica las heridas recibidas por la criatura en el &uacute;ltimo asalto.
-     * @param numeroHeridas 
+     *
+     * @param numeroHeridas
      */
     public void aplicarHeridas(int numeroHeridas) {
         this.ptosVida -= this.heridas;
         this.heridas = 0;
+        if(this.ptosVida<=0)
+            this.ptosVida=0;
     }
-    
+
     /**
-     * 
-     * @return true - criatura libre
-     *         false - criatura oscura
+     *
+     * @return true - criatura libre false - criatura oscura
      */
     public abstract boolean isCriaturaLibre();
 }
