@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package criaturas;
+package factorias;
+
+import criaturas.Criatura;
 
 /**
  * Esta interfaz será implementada por las clases de Factoria asociadas a cada

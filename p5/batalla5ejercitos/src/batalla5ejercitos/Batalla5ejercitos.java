@@ -4,8 +4,8 @@
  */
 package batalla5ejercitos;
 
-import criaturas.CriaturaFactoria;
-import criaturas.ElfoFactoria;
+import factorias.CriaturaFactoria;
+import factorias.ElfoFactoria;
 import ejercitos.Tropa;
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -118,8 +118,10 @@ public abstract class Criatura {
         int dadoAtaque = Batalla.numAleatorio(1, 6);
         int dadoDefensa = Batalla.numAleatorio(1, 6);
         boolean addHerida = false;
-        
-        if(this.estaMuerto()) {return;}
+
+        if (this.estaMuerto()) {
+            return;
+        }
 
         if (dadoAtaque + this.getAtaque() > dadoDefensa + oponente.getDefensa()) {
             addHerida = true;
@@ -147,8 +149,9 @@ public abstract class Criatura {
     public void aplicarHeridas(int numeroHeridas) {
         this.ptosVida -= this.heridas;
         this.heridas = 0;
-        if(this.ptosVida<=0)
-            this.ptosVida=0;
+        if (this.ptosVida <= 0) {
+            this.ptosVida = 0;
+        }
     }
 
     /**

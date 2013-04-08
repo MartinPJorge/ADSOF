@@ -6,7 +6,7 @@ package ejercitos;
 
 import batalla5ejercitos.Batalla;
 import criaturas.Criatura;
-import criaturas.CriaturaFactoria;
+import factorias.CriaturaFactoria;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -41,8 +41,16 @@ public class Batalla {
      * @return el n&uacute;mero aleatorio
      */
     public static int numAleatorio(int a, int b) {
-        Batalla.r = new Random(Calendar.getInstance().getTimeInMillis());
         return r.nextInt(b - a + 1) + a;
+    }
+
+    /**
+     * Devuelve un double aleatorio entre 0.0 y 1.0.
+     *
+     * @return double aleatorio
+     */
+    public static double numAleatorio() {
+        return r.nextDouble();
     }
 
     /**

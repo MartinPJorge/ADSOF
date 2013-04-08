@@ -4,8 +4,7 @@
  */
 package criaturas;
 
-import java.util.Calendar;
-import java.util.Random;
+import batalla5ejercitos.Batalla;
 
 /**
  * Esta clase, que extiende la clase abstracta CriaturaLibre e implementa la
@@ -36,12 +35,9 @@ public class Elfo extends CriaturaLibre implements PrimerNacido {
      */
     @Override
     public boolean curarHerida() {
-        Random r = new Random(Calendar.getInstance().getTimeInMillis());
-        double aleat = r.nextDouble();
-
-        return aleat <= 0.3;
+        return Batalla.numAleatorio() <= 0.3;
     }
-    
+
     /**
      * Incrementa en 'numeroHeridas' las heridas de la criatura.
      *
@@ -49,7 +45,7 @@ public class Elfo extends CriaturaLibre implements PrimerNacido {
      */
     @Override
     public void addHeridas(int numeroHeridas) {
-        if(!curarHerida()) {
+        if (!curarHerida()) {
             this.heridas += numeroHeridas;
         }
     }

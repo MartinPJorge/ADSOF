@@ -4,8 +4,15 @@
  */
 package ejercitos;
 
+import factorias.CriaturaFactoria;
+import factorias.OrcoFactoria;
+import factorias.HombreFactoria;
+import factorias.EnanoFactoria;
+import factorias.HuargoFactoria;
+import factorias.ElfoFactoria;
 import batalla5ejercitos.Batalla;
 import criaturas.*;
+import factorias.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -41,7 +48,7 @@ public class Ejercito {
 
         tropas = new ArrayList<Tropa>();
         Set<CriaturaFactoria> factorias = tropasDescr.keySet();
-        CriaturaFactoria[] cFacts = (CriaturaFactoria[])factorias.toArray(new CriaturaFactoria[factorias.size()]);
+        CriaturaFactoria[] cFacts = (CriaturaFactoria[]) factorias.toArray(new CriaturaFactoria[factorias.size()]);
         if (tropasNoCompatibles(cFacts)) {
             throw new IncompatibleTypesExc();
         }
@@ -94,8 +101,8 @@ public class Ejercito {
      */
     public static Ejercito crearEjercitoLibre() {
         HashMap<CriaturaFactoria, ArrayList<Integer>> descTropas = new HashMap<CriaturaFactoria, ArrayList<Integer>>();
-        String[] criatLib = {"Hombre", "Elfo", "Enano"};
-        CriaturaFactoria[] facts = {new HombreFactoria(), new ElfoFactoria(), new EnanoFactoria()};
+        String[] criatLib = {"Hombre", "Elfo", "ElfoNoldor", "Enano"};
+        CriaturaFactoria[] facts = {new HombreFactoria(), new ElfoFactoria(), new ElfoNoldorFactoria(), new EnanoFactoria()};
         int i, opcion = 0, unidades = 0;
         String factName;
         Scanner s = new Scanner(System.in);
@@ -112,7 +119,7 @@ public class Ejercito {
             } else if (opcion < 0 || opcion > criatLib.length) {
                 System.out.println("Opcion incorrecta.\n");
             } else {
-                factName = "criaturas." + criatLib[opcion] + "Factoria";
+                factName = "factorias." + criatLib[opcion] + "Factoria";
                 Class f;
                 try {
                     f = Class.forName(factName);
@@ -167,8 +174,8 @@ public class Ejercito {
      */
     public static Ejercito crearEjercitoOscuro() {
         HashMap<CriaturaFactoria, ArrayList<Integer>> descTropas = new HashMap<CriaturaFactoria, ArrayList<Integer>>();
-        String[] criatOsc = {"Orco", "Huargo"};
-        CriaturaFactoria[] facts = {new OrcoFactoria(), new HuargoFactoria()};
+        String[] criatOsc = {"Orco", "OrcoUrukhai", "Huargo"};
+        CriaturaFactoria[] facts = {new OrcoFactoria(), new OrcoUrukhaiFactoria(), new HuargoFactoria()};
         int i, opcion = 0, unidades = 0;
         String factName;
         Scanner s = new Scanner(System.in);
@@ -185,7 +192,7 @@ public class Ejercito {
             } else if (opcion < 0 || opcion > criatOsc.length) {
                 System.out.println("Opcion incorrecta.\n");
             } else {
-                factName = "criaturas." + criatOsc[opcion] + "Factoria";
+                factName = "factorias." + criatOsc[opcion] + "Factoria";
                 Class f;
                 try {
                     f = Class.forName(factName);
@@ -249,7 +256,7 @@ public class Ejercito {
         //Atacamos al azar con las tropas de nuestro Ejercito que sigan en pie
         for (Tropa t : this.tropas) {
             if (t.estaAniquilada() == false) {
-                index = Batalla.numAleatorio(0, tEnems.size()-1);
+                index = Batalla.numAleatorio(0, tEnems.size() - 1);
                 t.atacar(tEnems.get(index));
             }
         }
@@ -287,9 +294,10 @@ public class Ejercito {
     @Override
     public String toString() {
         String s = "";
-        for(int i=0; i<this.tropas.size(); ++i){
-            if(this.tropas.get(i).estaAniquilada()==false)
-                s+="Tropa " + (i+1) +":" + this.tropas.get(i).toString();
+        for (int i = 0; i < this.tropas.size(); ++i) {
+            if (this.tropas.get(i).estaAniquilada() == false) {
+                s += "Tropa " + (i + 1) + ":" + this.tropas.get(i).toString();
+            }
         }
         return "{\n" + s + "}";
     }
