@@ -25,6 +25,10 @@ public class ControlEjercito implements ActionListener{
     private HashMap<CriaturaFactoria, ArrayList<Integer>> descTropas;
     final private CriaturaFactoria[] facts;
             
+    /**
+     * Inicia un controlador de ej&eacute;rcito
+     * @param ejV
+     */
     public ControlEjercito(EjercitoVista ejV) {
         this.ejV = ejV;
 
@@ -43,23 +47,44 @@ public class ControlEjercito implements ActionListener{
         this.descTropas = new HashMap<CriaturaFactoria, ArrayList<Integer>>();
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<CriaturaFactoria, ArrayList<Integer>> getDescTropas() {
         return descTropas;
     }
 
+    /**
+     *
+     * @param descTropas
+     */
     public void setDescTropas(HashMap<CriaturaFactoria, ArrayList<Integer>> descTropas) {
         this.descTropas = descTropas;
     }
 
+    /**
+     *
+     * @return
+     */
     public EjercitoVista getEjV() {
         return ejV;
     }
 
+    /**
+     *
+     * @param ejV
+     */
     public void setEjV(EjercitoVista ejV) {
         this.ejV = ejV;
     }
     
     
+    /**
+     * Acc&iacute;on a realizar al recivir un evento de una componente residente 
+     * en la vista ejV.
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(ejV.getUnidades().intValue()<=0){
@@ -103,8 +128,13 @@ public class ControlEjercito implements ActionListener{
             tabMod.addRow(newRow);
         }
         this.ejV.getScroll().setViewportView(t);
+
     }
     
+    /**
+     * Borra los elementos de las tablas de tropas que han quedado de la anterior 
+     * simulaci&oacute;n.
+     */
     public void resetearEjercito(){
         this.setDescTropas(new HashMap<CriaturaFactoria, ArrayList<Integer>>());
         
@@ -115,6 +145,5 @@ public class ControlEjercito implements ActionListener{
 
         Object[] obs = {"---", 0};
         tabMod.addRow(obs);    
-
     }
 }

@@ -4,19 +4,18 @@
  */
 package es.uam.eps.adsof.batalla5ejercitos.ejercitos;
 
-import es.uam.eps.adsof.batalla5ejercitos.factorias.EnanoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoNoldorFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.HombreFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos.Batalla;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.Criatura;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.CriaturaLibre;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoNoldorFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.EnanoFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.HombreFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.myException.EmptyArmyExc;
+import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import es.uam.eps.adsof.batalla5ejercitos.myException.EmptyArmyExc;
-import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
 
 /**
  *

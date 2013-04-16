@@ -98,11 +98,14 @@ public class Tropa {
             if(c.estaMuerto()==false)
                 vivas+=1;
         }
-        return "Tipo de criaturas:" + criaturas.get(0).getClass().getSimpleName()
-                + "\n\tUnidades:" + vivas + "\n";
+        return criaturas.get(0).getClass().getSimpleName()
+                + " → Unidades: " + vivas;
     }
     
-    
+    /**
+     * 
+     * @return las criaturas vivas de la tropa
+     */
     public List<Criatura> getVivas(){
         List<Criatura> vivas = new ArrayList<Criatura>();
         for (Criatura c : this.criaturas) {

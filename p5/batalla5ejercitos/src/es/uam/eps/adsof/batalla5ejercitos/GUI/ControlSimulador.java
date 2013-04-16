@@ -7,17 +7,15 @@ package es.uam.eps.adsof.batalla5ejercitos.GUI;
 import es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos.Batalla;
 import es.uam.eps.adsof.batalla5ejercitos.ejercitos.EjercitoLibre;
 import es.uam.eps.adsof.batalla5ejercitos.ejercitos.EjercitoOscuro;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.myException.EmptyArmyExc;
 import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,21 +42,43 @@ public class ControlSimulador implements ActionListener{
                     "Error al comenzar simulación", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
+        
         this.bat = new Batalla();
-        String ganador;
+        List<String> res;
+        EjercitoLibre libre;
+        EjercitoOscuro oscuro;
+        
         try {
-            ganador = bat.simularBatalla(new EjercitoLibre(this.ejL.getDescTropas()), new EjercitoOscuro(this.ejO.getDescTropas()));
+            //Creamos ejercitos y borramos la ventana
+            libre = new EjercitoLibre(this.ejL.getDescTropas());
+            oscuro = new EjercitoOscuro(this.ejO.getDescTropas());
+            this.simV.getResult().setText("");
+            
+            int ronda = 1;
+            while(bat.isFinBatalla()==false){
+                simV.imprimirBuff("------RONDA "+ronda+"------\n", Color.BLACK);
+                res = bat.lanzarRonda(libre, oscuro);
+                
+                if(res.size() == 2) {
+                    simV.imprimirBuff(res);
+                }
+                //Fin de batalla
+                else if(res.size() == 3) {
+                    simV.imprimirBuff(res.subList(0, 1));
+                    Color verdeOscuro = new Color(16, 102, 18);
+                    simV.imprimirBuff(res.get(2), verdeOscuro);
+                }
+                
+                ronda++;
+            }
+            
         } catch (IncompatibleTypesExc | EmptyArmyExc ex) {
             Logger.getLogger(ControlSimulador.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog( null, "Error en la creación de Ejércitos.", 
-                    "Error de simulación", JOptionPane.INFORMATION_MESSAGE);
-            return;
         }
-        JOptionPane.showMessageDialog( null, ganador, "La Batalla de los 5 Ejércitos ha terminado", JOptionPane.INFORMATION_MESSAGE);
-        
+
+        //Reseteamos el ejercito
         this.ejL.resetearEjercito();
         this.ejO.resetearEjercito();
-        
     }
     
 }

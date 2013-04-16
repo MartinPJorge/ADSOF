@@ -25,16 +25,13 @@ public class EjercitoVista extends JPanel {
     private JTable tabla;
     private JScrollPane scroll;
 
-//    public EjercitoVista(String nombre, String[] troops){
-//        super();
-//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        this.setName(nombre);
-//        this.makeSelector(troops);
-//        agregar = new JButton("Agregar");
-//        agregar.setVisible(true);
-//        this.add(agregar);
-//        this.makeTable();
-//    }
+
+    
+    /**
+     * Constructor del panel encargado de a&ntilde;adir tropas al ej&eacute;rcito.
+     * @param nombre
+     * @param troops
+     */
     public EjercitoVista(String nombre, String[] troops) {
         super();
         this.setLayout(new SpringLayout());
@@ -59,6 +56,10 @@ public class EjercitoVista extends JPanel {
         
     }
 
+    /**
+     * Inicia los elementos desde los que se introducen los datos.
+     * @param troops
+     */
     public final void makeSelector(String[] troops) {
         JPanel panel = new JPanel(new SpringLayout());
 
@@ -81,6 +82,9 @@ public class EjercitoVista extends JPanel {
         this.add(selector);
     }
 
+    /**
+     * Crea la tabla que muestra las tropas creadas.
+     */
     public final void makeTable() {
         String[] cols = {"Tipo", "Unidades"};
         Object[][] obs = {{"---", 0}};
@@ -95,63 +99,119 @@ public class EjercitoVista extends JPanel {
         tabla = t;
         this.add(scroll);
 
-        this.scroll.setPreferredSize(new Dimension(350, 500));
+        this.scroll.setPreferredSize(new Dimension(20, 200));
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getAgregar() {
         return agregar;
     }
 
+    /**
+     *
+     * @param agregar
+     */
     public void setAgregar(JButton agregar) {
         this.agregar = agregar;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getSelector() {
         return selector;
     }
 
+    /**
+     *
+     * @param selector
+     */
     public void setSelector(JPanel selector) {
         this.selector = selector;
     }
 
+    /**
+     *
+     * @return
+     */
     public JScrollPane getScroll() {
         return scroll;
     }
 
+    /**
+     *
+     * @param scroll
+     */
     public void setScroll(JScrollPane scroll) {
         this.scroll = scroll;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTable getTabla() {
         return tabla;
     }
 
+    /**
+     *
+     * @param tabla
+     */
     public void setTabla(JTable tabla) {
         this.tabla = tabla;
     }
 
 
+    /**
+     *
+     * @return
+     */
     public JComboBox getTropas() {
         return tropas;
     }
 
+    /**
+     *
+     * @param tropas
+     */
     public void setTropas(JComboBox tropas) {
         this.tropas = tropas;
     }
 
+    /**
+     *
+     * @return
+     */
     public JFormattedTextField getUnid() {
         return unid;
     }
 
+    /**
+     *
+     * @param unid
+     */
     public void setUnid(JFormattedTextField unid) {
         this.unid = unid;
     }
 
     // método para asignar un controlador al botón
+    /**
+     *
+     * @param c
+     */
     public void setControlador(ActionListener c) {
         agregar.addActionListener(c);
     }
     
+    /**
+     *
+     * @return
+     */
     public Integer getUnidades(){
         return (Integer)unid.getValue();
     }

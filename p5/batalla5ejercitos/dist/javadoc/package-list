@@ -1,5 +1,6 @@
-batalla5ejercitos
-criaturas
-ejercitos
-factorias
-myException
+es.uam.eps.adsof.batalla5ejercitos.GUI
+es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos
+es.uam.eps.adsof.batalla5ejercitos.criaturas
+es.uam.eps.adsof.batalla5ejercitos.ejercitos
+es.uam.eps.adsof.batalla5ejercitos.factorias
+es.uam.eps.adsof.batalla5ejercitos.myException

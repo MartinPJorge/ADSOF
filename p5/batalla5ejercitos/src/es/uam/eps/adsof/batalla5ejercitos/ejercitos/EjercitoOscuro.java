@@ -8,7 +8,6 @@ import es.uam.eps.adsof.batalla5ejercitos.factorias.OrcoFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.factorias.OrcoUrukhaiFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.factorias.HuargoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos.Batalla;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.Criatura;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.CriaturaOscura;
 import java.util.*;
