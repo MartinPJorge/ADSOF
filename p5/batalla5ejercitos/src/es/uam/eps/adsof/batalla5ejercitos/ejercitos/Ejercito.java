@@ -120,13 +120,17 @@ public abstract class Ejercito {
         String s = "";
         for (int i = 0; i < this.tropas.size(); ++i) {
             if (this.tropas.get(i).estaAniquilada() == false) {
-                s += "Tropa " + (i + 1) + ":" + this.tropas.get(i).toString();
+                s += "   ▸ Tropa " + (i + 1) + ": " + this.tropas.get(i).toString() + "\n";
             }
         }
         return "{\n" + s + "}";
     }
     
     
+    /**
+     * 
+     * @return lista con las tropas vivas
+     */
     public List<Tropa> getVivas(){
         List<Tropa> vivas = new ArrayList<Tropa>();
         for (Tropa t: this.tropas) {

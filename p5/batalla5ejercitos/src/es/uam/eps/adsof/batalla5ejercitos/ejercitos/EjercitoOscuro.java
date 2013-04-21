@@ -8,7 +8,6 @@ import es.uam.eps.adsof.batalla5ejercitos.factorias.OrcoFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.factorias.OrcoUrukhaiFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
 import es.uam.eps.adsof.batalla5ejercitos.factorias.HuargoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos.Batalla;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.Criatura;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.CriaturaOscura;
 import java.util.*;
@@ -21,8 +20,8 @@ import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
  *
  * @author e265923
  */
-public class EjercitoOscuro extends Ejercito{
-    
+public class EjercitoOscuro extends Ejercito {
+
     /**
      * Constuctor de la clase Ejercito.
      *
@@ -52,13 +51,12 @@ public class EjercitoOscuro extends Ejercito{
         }
 
         //Buscamos criaturas de distintos bandos.
-        for(Criatura c : criaturas) {
-            if(!(c instanceof CriaturaOscura)) {
+        for (Criatura c : criaturas) {
+            if (!(c instanceof CriaturaOscura)) {
                 throw new IncompatibleTypesExc();
             }
         }
     }
-
 
     /**
      * Solicita al usuario que introduzca por teclado los datos necesarios para
@@ -87,37 +85,24 @@ public class EjercitoOscuro extends Ejercito{
             } else if (opcion < 0 || opcion > criatOsc.length) {
                 System.out.println("Opcion incorrecta.\n");
             } else {
-                factName = "es.uam.eps.adsof.batalla5ejercitos.factorias." + criatOsc[opcion] + "Factoria";
-                Class f;
-                try {
-                    f = Class.forName(factName);
-                } catch (ClassNotFoundException ex) {
-                    return null;
-                }
+
                 System.out.println("Introduzca el número de unidades de la raza " + criatOsc[opcion] + ":");
                 unidades = s.nextInt();
                 if (unidades <= 0) {
                     System.out.println("Número de unidades inválido. No se creará ninguna tropa.\n");
                 } else {
-                    try {
-                        CriaturaFactoria cf = (CriaturaFactoria) f.newInstance();
-                        for (int j = 0; j < facts.length; ++j) {
-                            if (cf.getClass().equals(facts[j].getClass())) {
-                                cf = facts[j];
-                                break;
-                            }
-                        }
-                        ArrayList<Integer> units = descTropas.get(cf);
-                        if (units == null) {
-                            units = new ArrayList<Integer>();
-                        }
-                        units.add(unidades);
 
-                        descTropas.put(cf, units);
-                        System.out.println("Tropa añadida correctamente al Ejército.\n");
-                    } catch (InstantiationException | IllegalAccessException ex) {
-                        Logger.getLogger(Ejercito.class.getName()).log(Level.SEVERE, null, ex);
+                    CriaturaFactoria cf = facts[opcion];
+
+                    ArrayList<Integer> units = descTropas.get(cf);
+                    if (units == null) {
+                        units = new ArrayList<Integer>();
                     }
+                    units.add(unidades);
+
+                    descTropas.put(cf, units);
+                    System.out.println("Tropa añadida correctamente al Ejército.\n");
+
                 }
             }
         }
@@ -131,5 +116,4 @@ public class EjercitoOscuro extends Ejercito{
         System.out.println("El Ejército Oscuro ha sido creado correctamente.\n");
         return e;
     }
-
 }

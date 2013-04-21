@@ -7,7 +7,9 @@ package es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos;
 import es.uam.eps.adsof.batalla5ejercitos.ejercitos.Ejercito;
 import es.uam.eps.adsof.batalla5ejercitos.ejercitos.EjercitoLibre;
 import es.uam.eps.adsof.batalla5ejercitos.ejercitos.EjercitoOscuro;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -32,6 +34,14 @@ public class Batalla {
         oscuro = null;
         libre = null;
         finBatalla = false;
+    }
+
+    public boolean isFinBatalla() {
+        return finBatalla;
+    }
+
+    public void setFinBatalla(boolean finBatalla) {
+        this.finBatalla = finBatalla;
     }
 
     /**
@@ -142,5 +152,48 @@ public class Batalla {
         }
         System.out.println(ganador);
         return ganador;
+    }
+    
+    public List<String> lanzarRonda(EjercitoLibre lib, EjercitoOscuro osc) {
+        libre = lib;
+        oscuro = osc;
+        String tropasLibres = "";
+        String tropasOscuras = "";
+        String ganador = "La batalla ha terminado. ¡El ganador ha sido el Ejército ";
+        List<String> resultados = new ArrayList<String>();
+        
+        //Visualizar estados de la Batalla
+        //buffer += "\nESTADO DE LOS EJÉRCITOS:";
+        tropasLibres +=  "Ejército Libre:" + this.libre.toString() + "\n\n";
+        tropasOscuras += "Ejército Oscuro:" + this.oscuro.toString() + "\n\n";
+        resultados.add(tropasLibres);
+        resultados.add(tropasOscuras);
+
+        //Realizar asalto
+        this.libre.atacar(this.oscuro);
+        this.oscuro.atacar(this.libre);
+
+        //Aplicar daños
+        this.libre.aplicarHeridas();
+        this.oscuro.aplicarHeridas();
+
+
+        if (this.libre.estaAniquilado() && this.oscuro.estaAniquilado()) {
+            ganador += "Ambos bandos han caído. Esta batalla no tendrá ni vencedores"
+                    + " ni vencidos.";
+            this.finBatalla = true;
+            resultados.add(ganador);
+        } else if (this.oscuro.estaAniquilado()) {
+            ganador += "de los Pueblos Libres!\nEjército de los Pueblos Libres:" + this.libre;
+            this.finBatalla = true;
+            resultados.add(ganador);
+        } else if (this.libre.estaAniquilado()) {
+            ganador += "Oscuro!\nEjército Oscuro:" + this.oscuro;
+            this.finBatalla = true;
+            resultados.add(ganador);
+        }
+        
+        
+        return resultados;
     }
 }

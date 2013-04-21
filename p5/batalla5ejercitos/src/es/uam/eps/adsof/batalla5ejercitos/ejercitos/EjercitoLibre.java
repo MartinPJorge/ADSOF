@@ -4,26 +4,25 @@
  */
 package es.uam.eps.adsof.batalla5ejercitos.ejercitos;
 
-import es.uam.eps.adsof.batalla5ejercitos.factorias.EnanoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoNoldorFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.HombreFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.batalla5ejercitos.Batalla;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.Criatura;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.CriaturaLibre;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoNoldorFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.EnanoFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.HombreFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.myException.EmptyArmyExc;
+import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import es.uam.eps.adsof.batalla5ejercitos.myException.EmptyArmyExc;
-import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
 
 /**
  *
  * @author e265923
  */
-public class EjercitoLibre extends Ejercito{
-    
+public class EjercitoLibre extends Ejercito {
+
     /**
      * Constuctor de la clase Ejercito.
      *
@@ -73,7 +72,7 @@ public class EjercitoLibre extends Ejercito{
         String[] criatLib = {"Hombre", "Elfo", "ElfoNoldor", "Enano"};
         CriaturaFactoria[] facts = {new HombreFactoria(), new ElfoFactoria(), new ElfoNoldorFactoria(), new EnanoFactoria()};
         int i, opcion = 0, unidades = 0;
-        String factName;
+
         Scanner s = new Scanner(System.in);
         while (true) {
             System.out.println("Ejército de los Pueblos Libres:");
@@ -88,37 +87,24 @@ public class EjercitoLibre extends Ejercito{
             } else if (opcion < 0 || opcion > criatLib.length) {
                 System.out.println("Opcion incorrecta.\n");
             } else {
-                factName = "es.uam.eps.adsof.batalla5ejercitos.factorias." + criatLib[opcion] + "Factoria";
-                Class f;
-                try {
-                    f = Class.forName(factName);
-                } catch (ClassNotFoundException ex) {
-                    return null;
-                }
+
                 System.out.println("Introduzca el número de unidades de la raza " + criatLib[opcion] + ":");
                 unidades = s.nextInt();
                 if (unidades <= 0) {
                     System.out.println("Número de unidades inválido. No se creará ninguna tropa.\n");
                 } else {
-                    try {
-                        CriaturaFactoria cf = (CriaturaFactoria) f.newInstance();
-                        for (int j = 0; j < facts.length; ++j) {
-                            if (cf.getClass().equals(facts[j].getClass())) {
-                                cf = facts[j];
-                                break;
-                            }
-                        }
-                        ArrayList<Integer> units = descTropas.get(cf);
-                        if (units == null) {
-                            units = new ArrayList<Integer>();
-                        }
-                        units.add(unidades);
 
-                        descTropas.put(cf, units);
-                        System.out.println("Tropa añadida correctamente al Ejército.\n");
-                    } catch (InstantiationException | IllegalAccessException ex) {
-                        Logger.getLogger(Ejercito.class.getName()).log(Level.SEVERE, null, ex);
+                    CriaturaFactoria cf = facts[opcion];
+
+                    ArrayList<Integer> units = descTropas.get(cf);
+                    if (units == null) {
+                        units = new ArrayList<Integer>();
                     }
+                    units.add(unidades);
+
+                    descTropas.put(cf, units);
+                    System.out.println("Tropa añadida correctamente al Ejército.\n");
+
                 }
             }
         }
@@ -133,6 +119,4 @@ public class EjercitoLibre extends Ejercito{
         return e;
 
     }
-
-
 }
