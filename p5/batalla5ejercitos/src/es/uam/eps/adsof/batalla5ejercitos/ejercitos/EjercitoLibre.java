@@ -6,20 +6,21 @@ package es.uam.eps.adsof.batalla5ejercitos.ejercitos;
 
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.Criatura;
 import es.uam.eps.adsof.batalla5ejercitos.criaturas.CriaturaLibre;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.CriaturaFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.ElfoNoldorFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.EnanoFactoria;
-import es.uam.eps.adsof.batalla5ejercitos.factorias.HombreFactoria;
+import es.uam.eps.adsof.batalla5ejercitos.factorias.*;
 import es.uam.eps.adsof.batalla5ejercitos.myException.EmptyArmyExc;
 import es.uam.eps.adsof.batalla5ejercitos.myException.IncompatibleTypesExc;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
+ * Esta clase representa el bando del Ejército Libre en la Batalla de los 5
+ * Ejércitos. Estará formado exclusivamente por criaturas que sean instancias de 
+ * CriaturaLibre.
  *
- * @author e265923
+ * @author Iv&aacute;n M&aacute;rquez Pardo
+ * @author Jorge Mart&iacute;n P&eacute;rez
+ * @version 1.0
  */
 public class EjercitoLibre extends Ejercito {
 
@@ -40,7 +41,6 @@ public class EjercitoLibre extends Ejercito {
      * resto.
      *
      * @param factorias
-     * @return boolean
      */
     @Override
     public void tropasNoCompatibles(CriaturaFactoria[] factorias) throws IncompatibleTypesExc {

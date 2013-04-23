@@ -14,8 +14,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Clase controladora de un EjercitoVista.
  *
- * @author Iván
+ * @author Iv&aacute;n M&aacute;rquez Pardo
+ * @author Jorge Mart&iacute;n P&eacute;rez
+ * @version 1.0
  */
 public class ControlEjercito implements ActionListener{
     private EjercitoVista ejV;
@@ -46,7 +49,7 @@ public class ControlEjercito implements ActionListener{
 
     /**
      *
-     * @return
+     * @return HashMap asociado
      */
     public HashMap<CriaturaFactoria, ArrayList<Integer>> getDescTropas() {
         return descTropas;
@@ -62,7 +65,7 @@ public class ControlEjercito implements ActionListener{
 
     /**
      *
-     * @return
+     * @return EjercitoVista asociado
      */
     public EjercitoVista getEjV() {
         return ejV;

@@ -109,50 +109,6 @@ public class Batalla {
         System.out.println(ganador);
     }
     
-    /**
-     * Método principal del Simulador de Batallas. Se encarga llamar a las
-     * funciones que crean Ejércitos, que realizan los ataques y que aplican los
-     * daños de combate. Por último, determina quién ha sido el ganador y lo
-     * muestra por pantalla
-     */
-    public String simularBatalla(EjercitoLibre lib, EjercitoOscuro osc) {
-        System.out.println("SIMULADOR DE BATALLA:");
-        //Creacion de Ejercitos
-        libre = lib;
-        oscuro = osc;
-        String ganador = "La batalla ha terminado. ¡El ganador ha sido el Ejército ";
-
-        System.out.println("¡La Batalla de los 5 Ejércitos ha comenzado!");
-        while (this.finBatalla == false) {
-            //Visualizar estados de la Batalla
-            System.out.println("\nESTADO DE LOS EJÉRCITOS:");
-            System.out.println("Ejército Libre:" + this.libre + "\n");
-            System.out.println("Ejército Oscuro:" + this.oscuro + "\n");
-
-            //Realizar asalto
-            this.libre.atacar(this.oscuro);
-            this.oscuro.atacar(this.libre);
-
-            //Aplicar daños
-            this.libre.aplicarHeridas();
-            this.oscuro.aplicarHeridas();
-
-
-            if (this.libre.estaAniquilado() && this.oscuro.estaAniquilado()) {
-                ganador = "Ambos bandos han caído. Esta batalla no tendrá ni vencedores"
-                        + " ni vencidos.";
-                this.finBatalla = true;
-            } else if (this.oscuro.estaAniquilado()) {
-                ganador += "de los Pueblos Libres!\nEjército de los Pueblos Libres:" + this.libre;
-                this.finBatalla = true;
-            } else if (this.libre.estaAniquilado()) {
-                ganador += "Oscuro!\nEjército Oscuro:" + this.oscuro;
-                this.finBatalla = true;
-            }
-        }
-        System.out.println(ganador);
-        return ganador;
-    }
     
     public List<String> lanzarRonda(EjercitoLibre lib, EjercitoOscuro osc) {
         libre = lib;
@@ -195,5 +151,18 @@ public class Batalla {
         
         
         return resultados;
+    }
+
+    /**
+     *  Método principal del Simulador de Batallas. Se encarga llamar a las
+     *       funciones que crean Ejércitos, que realizan los ataques y que aplican los
+     *       daños de combate. Por último, determina quién ha sido el ganador y lo
+     *       muestra por pantalla
+     */
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.AE45A207-5A51-40D6-902B-B8833C063A90]
+    // </editor-fold> 
+    public String simularBatalla (EjercitoLibre lib, EjercitoOscuro osc) {
+        return null;
     }
 }

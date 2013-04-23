@@ -18,60 +18,74 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase controladora de un SimuladorVista.
  *
- * @author ivan
+ * @author Iv&aacute;n M&aacute;rquez Pardo
+ * @author Jorge Mart&iacute;n P&eacute;rez
+ * @version 1.0
  */
-public class ControlSimulador implements ActionListener{
+public class ControlSimulador implements ActionListener {
+
     private SimuladorVista simV;
     private ControlEjercito ejL;
     private ControlEjercito ejO;
     private Batalla bat;
-    
+
+    /**
+     * Constructor de ControlSimulador.
+     *
+     * @param simV
+     * @param ejL
+     * @param ejO
+     */
     public ControlSimulador(SimuladorVista simV, ControlEjercito ejL, ControlEjercito ejO) {
         this.simV = simV;
         this.ejL = ejL;
         this.ejO = ejO;
     }
 
+    /**
+     * Listener de SimuladorVista
+     *
+     * @param arg0
+     */
     
-    @Override
     public void actionPerformed(ActionEvent arg0) {
-        if(this.ejL.getDescTropas().isEmpty() || this.ejO.getDescTropas().isEmpty()){
-            JOptionPane.showMessageDialog( null, "Existe al menos un Ejército sin Tropas.\nElija un tipo de Tropa, "
-                    + "introduzca sus unidades (unidades>0) y pulse el botón 'Agregar' para añadir una Tropa.", 
+        if (this.ejL.getDescTropas().isEmpty() || this.ejO.getDescTropas().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Existe al menos un Ejército sin Tropas.\nElija un tipo de Tropa, "
+                    + "introduzca sus unidades (unidades>0) y pulse el botón 'Agregar' para añadir una Tropa.",
                     "Error al comenzar simulación", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+
         this.bat = new Batalla();
         List<String> res;
         EjercitoLibre libre;
         EjercitoOscuro oscuro;
-        
+
         try {
             //Creamos ejercitos y borramos la ventana
             libre = new EjercitoLibre(this.ejL.getDescTropas());
             oscuro = new EjercitoOscuro(this.ejO.getDescTropas());
             this.simV.getResult().setText("");
-            
+
             int ronda = 1;
-            while(bat.isFinBatalla()==false){
-                simV.imprimirBuff("------RONDA "+ronda+"------\n", Color.BLACK);
+            while (bat.isFinBatalla() == false) {
+                simV.imprimirBuff("------RONDA " + ronda + "------\n", Color.BLACK);
                 res = bat.lanzarRonda(libre, oscuro);
-                
-                if(res.size() == 2) {
+
+                if (res.size() == 2) {
                     simV.imprimirBuff(res);
-                }
-                //Fin de batalla
-                else if(res.size() == 3) {
+                } //Fin de batalla
+                else if (res.size() == 3) {
                     simV.imprimirBuff(res.subList(0, 1));
                     Color verdeOscuro = new Color(16, 102, 18);
                     simV.imprimirBuff(res.get(2), verdeOscuro);
                 }
-                
+
                 ronda++;
             }
-            
+
         } catch (IncompatibleTypesExc | EmptyArmyExc ex) {
             Logger.getLogger(ControlSimulador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,5 +94,4 @@ public class ControlSimulador implements ActionListener{
         this.ejL.resetearEjercito();
         this.ejO.resetearEjercito();
     }
-    
 }
